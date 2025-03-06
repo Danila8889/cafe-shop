@@ -1,0 +1,25 @@
+{% extends 'cafe/tables/base.html' %}
+
+{% block title %}
+  Tables
+{% endblock %}
+
+{% block body %}
+  {% for table in tables %}
+      <h1>Table #{{ table.pk }}</h1>
+      <div>
+        <p>Table number: {{ table.number }}</p>
+        <div>
+          Orders in this table:
+          <ul>
+            {% for order in table.orders.all %}
+               <li>
+                 <a href="{% url 'cafe:order' pk=order.pk %}">Order {{order.pk }}</a>
+               </li>
+            {% endfor %}
+          </ul>
+            <a href="{% url 'cafe:table' pk=table.pk %}">Table {{table.pk }}</a>
+        </div>
+      </div>
+  {% endfor %}
+{% endblock %}

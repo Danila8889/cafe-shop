@@ -1,11 +1,10 @@
-from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
+from django.http import HttpRequest, HttpResponse, HttpResponseNotFound
 from django.urls import reverse
 from django.views import View
 from django.views.generic import DetailView, ListView, CreateView, UpdateView, DeleteView
-
 from cafe.models import Order, Table
 from .forms import OrderForm
+from .mixins import Error404Mixin
 
 
 class OrdersListView(ListView):
@@ -20,12 +19,6 @@ class OrdersTotalPrice(View):
         return HttpResponse(f"total_price orders: {total_price}")
 
 
-class OrderDetailsView(DetailView):
-    template_name = "cafe/orders/order_details.html"
-    queryset = Order.objects.all().prefetch_related("items")
-    context_object_name = "order"
-
-
 class CreateOrder(CreateView):
     template_name = "cafe/orders/create_order.html"
     context_object_name = 'order'
@@ -35,7 +28,13 @@ class CreateOrder(CreateView):
         return reverse("cafe:order", kwargs={"pk": self.object.pk})
 
 
-class OrderUpdate(UpdateView):
+class OrderDetailsView(Error404Mixin, DetailView):
+    template_name = "cafe/orders/order_details.html"
+    queryset = Order.objects.all().prefetch_related("items")
+    context_object_name = "order"
+
+
+class OrderUpdate(Error404Mixin, UpdateView):
     template_name = 'cafe/orders/order_update.html'
     queryset = Order.objects.all().prefetch_related("items")
     context_object_name = 'order'
@@ -45,7 +44,7 @@ class OrderUpdate(UpdateView):
         return reverse("cafe:order", kwargs={"pk": self.object.pk})
 
 
-class OrderDelete(DeleteView):
+class OrderDelete(Error404Mixin, DeleteView):
     template_name = 'cafe/orders/order_delete.html'
     queryset = Order.objects.all().prefetch_related("items")
     context_object_name = 'order'
@@ -54,7 +53,13 @@ class OrderDelete(DeleteView):
         return reverse("cafe:orders_list")
 
 
-class TableDetail(DetailView):
+class TablesListView(ListView):
+    template_name = "cafe/tables/tables_list.html"
+    queryset = Table.objects.all().prefetch_related("orders")
+    context_object_name = "tables"
+
+
+class TableDetail(Error404Mixin, DetailView):
     template_name = "cafe/tables/table_details.html"
     queryset = Table.objects.all().prefetch_related("orders")
     context_object_name = "table"

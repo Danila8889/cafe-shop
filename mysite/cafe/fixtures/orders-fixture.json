@@ -1,0 +1,94 @@
+[
+  {
+    "model": "cafe.order",
+    "pk": 1,
+    "fields": {
+      "table_number": 1,
+      "total_price": 56,
+      "status": "ready",
+      "items": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "cafe.order",
+    "pk": 2,
+    "fields": {
+      "table_number": 1,
+      "total_price": 79,
+      "status": "ready",
+      "items": [
+        1,
+        4,
+        3,
+        2
+      ]
+    }
+  },
+  {
+    "model": "cafe.order",
+    "pk": 3,
+    "fields": {
+      "table_number": 4,
+      "total_price": 89,
+      "status": "ready",
+      "items": [
+        1,
+        5,
+        3,
+        2
+      ]
+    }
+  },
+  {
+    "model": "cafe.order",
+    "pk": 4,
+    "fields": {
+      "table_number": 3,
+      "total_price": 88,
+      "status": "pending",
+      "items": [
+        5,
+        3
+      ]
+    }
+  },
+  {
+    "model": "cafe.order",
+    "pk": 5,
+    "fields": {
+      "table_number": 2,
+      "total_price": 125,
+      "status": "paid",
+      "items": [
+        5
+      ]
+    }
+  },
+  {
+    "model": "cafe.order",
+    "pk": 6,
+    "fields": {
+      "table_number": 4,
+      "total_price": 75,
+      "status": "ready",
+      "items": [
+        1,
+        4
+      ]
+    }
+  },
+  {
+    "model": "cafe.order",
+    "pk": 7,
+    "fields": {
+      "table_number": 1,
+      "total_price": 90,
+      "status": "ready",
+      "items": [
+        5
+      ]
+    }
+  }
+]

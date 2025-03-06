@@ -25,6 +25,6 @@ class Order(models.Model):
     ]
 
     table_number = models.ForeignKey(Table, related_name='orders', on_delete=models.CASCADE, default=1)
-    items = models.ManyToManyField(Item, related_name="orders")
+    items = models.ManyToManyField(Item, related_name="orders", verbose_name='orders')
     total_price = models.IntegerField(null=False)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='В ожидании')

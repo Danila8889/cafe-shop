@@ -2,7 +2,7 @@ from django.urls import path, include
 
 from cafe.api_v1.urls import api_router
 from .views import OrderDetailsView, OrdersListView, OrderUpdate, CreateOrder, OrderDelete, TableDetail, \
-    OrdersTotalPrice
+    OrdersTotalPrice, TablesListView
 
 app_name = "cafe"
 
@@ -16,6 +16,7 @@ urlpatterns = [
     path("order/<int:pk>/delete/", OrderDelete.as_view(), name="delete"),
 
     # tables
+    path("tables/", TablesListView.as_view(), name="tables_list"),
     path("table/<int:pk>/detail/", TableDetail.as_view(), name="table"),
 
     # api router
