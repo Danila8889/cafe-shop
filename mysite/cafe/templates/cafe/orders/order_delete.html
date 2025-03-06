@@ -1,0 +1,20 @@
+{% extends 'cafe/orders/base.html' %}
+
+{% block title %}
+  Update
+{% endblock %}
+
+{% block body %}
+<div>
+    <h1>
+        Delete order {{ order.pk }}
+    </h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <button type="submit">
+            Delete order
+        </button>
+        <a href="{% url 'cafe:order' pk=order.pk%}">Order {{ order.pk }} </a>
+    </form>
+</div>
+{% endblock %}

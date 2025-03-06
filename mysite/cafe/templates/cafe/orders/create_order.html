@@ -1,0 +1,20 @@
+{% extends 'cafe/orders/base.html' %}
+
+{% block title %}
+  Create
+{% endblock %}
+
+{% block body %}
+<div>
+    <h1>
+        Create order
+    </h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">
+            Submit
+        </button>
+    </form>
+</div>
+{% endblock %}

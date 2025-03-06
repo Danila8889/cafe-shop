@@ -1,0 +1,21 @@
+{% extends 'cafe/orders/base.html' %}
+
+{% block title %}
+  Update
+{% endblock %}
+
+{% block body %}
+<div>
+    <h1>
+        Update order {{ order.pk }}
+    </h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">
+            Submit
+        </button>
+        <a href="{% url 'cafe:order' pk=order.pk%}">Order {{ order.pk }}</a>
+    </form>
+</div>
+{% endblock %}

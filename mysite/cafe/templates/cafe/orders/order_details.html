@@ -1,0 +1,31 @@
+{% extends 'cafe/orders/base.html' %}
+
+{% block title %}
+  Order #{{ object.pk }} details
+{% endblock %}
+
+{% block body %}
+  <h1>Order #{{ object.pk }}</h1>
+  <div>
+    <p>Table_number: {{ order.table_number.number }}</p>
+    <p>Total price: {{ order.total_price }}</p>
+    <p>Status: {{ order.status }}</p>
+    <div>
+      Items in order.items:
+      <ul>
+        {% for item in order.items.all %}
+          <li>{{ item.name }} for ${{ item.price }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div>
+      <a href="{% url 'cafe:update' pk=order.pk %}">Update Order</a>
+    </div>
+    <div>
+      <a href="{% url 'cafe:delete' pk=order.pk %}">Delete Order</a>
+    </div>
+  </div>
+  <div>
+    <a href="{% url 'cafe:orders_list' %}">Back to orders</a>
+  </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'cafe/orders/base.html' %}
+
+{% block title %}
+  Orders list
+{% endblock %}
+
+{% block body %}
+  <h1>Orders:</h1>
+  {% if orders %}
+    <div>
+      <ul>
+      {% for order in orders %}
+        <div style="margin:40px;">
+          <p><a href="{% url 'cafe:order' pk=order.pk %}"> {{ order.pk }}</a>
+          <div>
+            <p>Table_number: {{ order.table_number.number }}</p>
+            <p>Total price: {{ order.total_price }}</p>
+            <p>Status: {{ order.status }}</p>
+            <div>
+              Items in order:
+              <ul>
+                {% for item in order.items.all %}
+                  <li>{{ item.name }} for ${{ item.price }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </ul>
+    </div>
+{% endfor %}
+<p><a href="{% url 'cafe:create' %}"> Create Order</a>
+<p><a href="{% url 'cafe:total_price' %}"> Total Price Orders</a>
+
+  {% else %}
+    <h3>No orders yet</h3>
+  {% endif %}
+{% endblock %}
